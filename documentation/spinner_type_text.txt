@@ -1,2 +1,5 @@
-<item Value="multiple">Multiple Choice</item>
-<item Value="boolean">True / False</item>
+<item>Multiple Choice</item>
+<item>True / False</item>
+
+<item>multiple</item>
+<item>boolean</item>

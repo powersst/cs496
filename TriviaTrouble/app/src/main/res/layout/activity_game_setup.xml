@@ -21,7 +21,7 @@
         android:textSize="22sp"/>
 
     <Spinner
-        android:id="@+id/spn_questionCount"
+        android:id="@+id/spn_GameSetup_QuestionCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -39,7 +39,7 @@
         android:textSize="22sp"/>
 
     <Spinner
-        android:id="@+id/spn_questionCategory"
+        android:id="@+id/spn_GameSetup_QuestionCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -57,7 +57,7 @@
         android:textSize="22sp"/>
 
     <Spinner
-        android:id="@+id/spn_questionDifficulty"
+        android:id="@+id/spn_GameSetup_QuestionDifficulty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -75,7 +75,7 @@
         android:textSize="22sp"/>
 
     <Spinner
-        android:id="@+id/spn_questionType"
+        android:id="@+id/spn_GameSetup_QuestionType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -86,10 +86,18 @@
         />
 
     <Button
-        android:id="@+id/btn_begin"
+        android:id="@+id/btn_GameSetup_Begin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:text="@string/gameSetup_Begin_Text"
-        android:textSize="28sp"/>
+        android:textSize="28sp"
+        android:visibility="invisible"
+        />
+
+    <ProgressBar
+        android:id="@+id/pb_GameSetup_Loading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

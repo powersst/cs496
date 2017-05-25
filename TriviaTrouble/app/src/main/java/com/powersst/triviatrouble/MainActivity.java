@@ -20,12 +20,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Log.d("MainActivity", "ON CREATE METHOD");
-
+    }
+/*
         doOpenTriviaSearch();
     }
 
     //Execute Search
-    private void doOpenTriviaSearch() {
+    public void doOpenTriviaSearch() {
         Log.d("MainActivity", "doOpenTriviaSearch");
 
         String qAmount = "10";
@@ -74,4 +75,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+*/
 }

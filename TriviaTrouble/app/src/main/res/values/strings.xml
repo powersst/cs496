@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Trivia Trouble</string>
 
-    /**
+    <!--**
      * ACTIVITY: Game Setup
-     */
+     *-->
     <string name="gameSetup_Title">Game Setup</string>
     <string name="gameSetup_QuestionCount_Title">Question Count</string>
     <string name="gameSetup_QuestionCount_Prompt">Question Count</string>
