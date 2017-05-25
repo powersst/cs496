@@ -4,4 +4,92 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gameSetup_Title"
+        android:textAlignment="center"
+        android:textSize="42sp"/>
+
+    <TextView
+        android:id="@+id/tv_questionCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gameSetup_QuestionCount_Title"
+        android:textSize="22sp"/>
+
+    <Spinner
+        android:id="@+id/spn_questionCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="28sp"
+        android:prompt="@string/gameSetup_QuestionCount_Prompt"
+        />
+
+    <TextView
+        android:id="@+id/tv_questionCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gameSetup_QuestionCategory_Title"
+        android:textSize="22sp"/>
+
+    <Spinner
+        android:id="@+id/spn_questionCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="28sp"
+        android:prompt="@string/gameSetup_QuestionCategory_Prompt"
+        />
+
+    <TextView
+        android:id="@+id/tv_questionDifficulty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gameSetup_QuestionDifficulty_Title"
+        android:textSize="22sp"/>
+
+    <Spinner
+        android:id="@+id/spn_questionDifficulty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="28sp"
+        android:prompt="@string/gameSetup_QuestionDifficulty_Prompt"
+        />
+
+    <TextView
+        android:id="@+id/tv_questionType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gameSetup_QuestionType_Title"
+        android:textSize="22sp"/>
+
+    <Spinner
+        android:id="@+id/spn_questionType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textSize="28sp"
+        android:prompt="@string/gameSetup_QuestionType_Prompt"
+        />
+
+    <Button
+        android:id="@+id/btn_begin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/gameSetup_Begin_Text"
+        android:textSize="28sp"/>
 </LinearLayout>
