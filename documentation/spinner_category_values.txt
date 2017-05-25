@@ -24,6 +24,33 @@
 <item>Entertainment: Japanese Anime &amp; Manga</item>
 <item>Entertainment: Cartoon &amp; Animations</item>
 
+<item Value=">Any Category</item>
+<item Value="9">General Knowledge</item>
+<item Value="10">Entertainment: Books</item>
+<item Value="11">Entertainment: Film</item>
+<item Value="12">Entertainment: Music</item>
+<item Value="13">Entertainment: Musicals &amp; Theatres</item>
+<item Value="14">Entertainment: Television</item>
+<item Value="15">Entertainment: Video Games</item>
+<item Value="16">Entertainment: Board Games</item>
+<item Value="17">Science &amp; Nature</item>
+<item Value="18">Science: Computers</item>
+<item Value="19">Science: Mathematics</item>
+<item Value="20">Mythology</item>
+<item Value="21">Sports</item>
+<item Value="22">Geography</item>
+<item Value="23">History</item>
+<item Value="24">Politics</item>
+<item Value="25">Art</item>
+<item Value="26">Celebrities</item>
+<item Value="27">Animals</item>
+<item Value="28">Vehicles</item>
+<item Value="29">Entertainment: Comics</item>
+<item Value="30">Science: Gadgets</item>
+<item Value="31">Entertainment: Japanese Anime &amp; Manga</item>
+<item Value="32">Entertainment: Cartoon &amp; Animations</item>
+
+
 <item></item>
 <item>9</item>
 <item>10</item>
