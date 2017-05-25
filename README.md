@@ -13,11 +13,18 @@ CS496 Mobile Software Development
 
 ## TODO:
 - Creation of screens
+
 -- Main Activity
+
 -- Game Setup Activity
+
 -- Game Activity
+
 -- Main Menu / Settings Activity (?)
+
 - Linking Activities (intents)
+
 - Persistence of data
+
 -- Saving data to the device or cloud and restoring between sessions.
 
