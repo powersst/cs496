@@ -18,8 +18,6 @@ import java.util.TimeZone;
  */
 
 public class OpenTriviaUtils {
-
-    //https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple
     private final static String OPEN_TRIVIA_BASE_URL = "https://opentdb.com/api.php?";
     private final static String OPEN_TRIVIA_AMOUNT_PARAM = "amount";
     private final static String OPEN_TRIVIA_CATEGORY_PARAM = "category";
@@ -32,21 +30,37 @@ public class OpenTriviaUtils {
     private final static String qDifficulty = "easy";
     private final static String qType = "multiple";
 
-
-
-//        "category": "General Knowledge",
-//                "type": "multiple",
-//                "difficulty": "easy",
-//                "question": "Virgin Trains, Virgin Atlantic and Virgin Racing, are all companies owned by which famous entrepreneur?   ",
-//                "correct_answer": "Richard Branson",
-//                "incorrect_answers": [
-//                "Alan Sugar",
-//                "Donald Trump",
-//                "Bill Gates"
-//                ]
+/*
+ * Layout for typical MC question
+ * ref[https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple]
+ *
+ *    "category": "General Knowledge",
+ *    "type": "multiple",
+ *    "difficulty": "easy",
+ *    "question": "Virgin Trains, Virgin Atlantic and Virgin Racing, are all companies owned by which famous entrepreneur?   ",
+ *    "correct_answer": "Richard Branson",
+ *    "incorrect_answers": [
+ *        "Alan Sugar",
+ *        "Donald Trump",
+ *        "Bill Gates"
+ *        ]
+ *
+ * Layout for a typical TF question
+ * ref[https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=boolean]
+ *
+ *    "category": "General Knowledge",
+ *    "type": "boolean",
+ *    "difficulty": "easy",
+ *    "question": "When you cry in space, your tears stick to your face.",
+ *    "correct_answer": "True",
+ *    "incorrect_answers": ["False"]
+ */
 
     public static class TriviaItem implements Serializable {
+        /* for later implementation of intents
         public static final String EXTRA_TRIVIA_ITEM = "com.powersst.triviatrouble.utils.TriviaItem.SearchResult";
+        */
+
         public String category;
         public String type;
         public String difficulty;
@@ -82,8 +96,9 @@ public class OpenTriviaUtils {
                 triviaItem.correct_answer = triviaListElem.getString("correct_answer");
 
                 JSONArray triviaIncorrect = triviaListElem.getJSONArray("incorrect_answers");
+                triviaItem.incorrect_answers = new String[triviaIncorrect.length()];
 
-                for (int j = 0; i < triviaIncorrect.length(); j++) {
+                for (int j = 0; j < triviaIncorrect.length(); j++) {
                     triviaItem.incorrect_answers[j] = triviaIncorrect.getString(j);
                 }
 
