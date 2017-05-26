@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Trivia Trouble</string>
+    <string name="msg_NoResults">Sorry! No results were found for this query.</string>
 
     <!--**
      * ACTIVITY: Game Setup
@@ -13,5 +14,9 @@
     <string name="gameSetup_QuestionDifficulty_Prompt">Question Difficulty</string>
     <string name="gameSetup_QuestionType_Title">Question Type</string>
     <string name="gameSetup_QuestionType_Prompt">Question Type</string>
-    <string name="gameSetup_Begin_Text">Begin!</string>
+    <string name="gameSetup_Search_Text">Load Questions</string>
+    <string name="gameSetup_Begin_Text">Start Game!</string>
+    <string name="main_Title">Trivia Trouble</string>
+    <string name="main_Begin_Text">Start Game</string>
+    <string name="gameSetup_LoadError">An error has occured. Please try again.</string>
 </resources>

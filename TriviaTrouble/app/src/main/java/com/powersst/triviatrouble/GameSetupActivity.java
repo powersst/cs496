@@ -1,5 +1,7 @@
 package com.powersst.triviatrouble;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.powersst.triviatrouble.utils.NetworkUtils;
 import com.powersst.triviatrouble.utils.OpenTriviaUtils;
@@ -29,12 +32,17 @@ public class GameSetupActivity extends AppCompatActivity {
     private Spinner mSpnQuestionType;
     private ProgressBar mPbLoading;
     private Button mBtnBegin;
+    private ArrayList<OpenTriviaUtils.TriviaItem> mTriviaItems;
+    private static final String TRIVIA_ITEM_KEY = "triviaItems";
 
     // METHODS
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_setup);
+
+        // Get the intent that started this activity
+        Intent intent = getIntent();
 
         // Capture member references
         mSavedInstanceState = savedInstanceState;
@@ -98,10 +106,29 @@ public class GameSetupActivity extends AppCompatActivity {
     public void doOpenTriviaSearch() {
         Log.d("GameSetupActivity", "doOpenTriviaSearch");
 
-        String qAmount = "10";
-        String qCategory = "9";
-        String qDifficulty = "easy";
-        String qType = "multiple";
+        String[] entryValues = null;
+        String entryValue = null;
+        String qAmount = null;
+        String qCategory = null;
+        String qDifficulty = null;
+        String qType = null;
+
+        qAmount = String.valueOf(mSpnQuestionCount.getSelectedItem());
+
+        entryValues = getResources().getStringArray(R.array.gameSetup_QuestionCategory_EntryValues);
+        entryValue = entryValues[mSpnQuestionCategory.getSelectedItemPosition()];
+        qCategory = String.valueOf(entryValue);
+
+        entryValues = getResources().getStringArray(R.array.gameSetup_QuestionDifficulty_EntryValues);
+        entryValue = entryValues[mSpnQuestionDifficulty.getSelectedItemPosition()];
+        qDifficulty = String.valueOf(entryValue);
+
+        entryValues = getResources().getStringArray(R.array.gameSetup_QuestionType_EntryValues);
+        entryValue = entryValues[mSpnQuestionType.getSelectedItemPosition()];
+        qType = String.valueOf(entryValue);
+
+
+        Log.d("GameSetupActivity", "URL Params: " + qAmount + ", " + qCategory + ", " + qDifficulty + ", " + qType);
 
         String openTriviaSearchUrl = OpenTriviaUtils.buildTriviaURL(qAmount, qCategory, qDifficulty, qType);
         Log.d("GameSetupActivity", "got search url: " + openTriviaSearchUrl);
@@ -114,6 +141,7 @@ public class GameSetupActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             mPbLoading.setVisibility(View.VISIBLE);
+            mBtnBegin.setEnabled(false);
         }
 
         @Override
@@ -132,16 +160,69 @@ public class GameSetupActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             mPbLoading.setVisibility(View.INVISIBLE);
+            mBtnBegin.setEnabled(true);
+
             if (s != null) {
-//                mLoadingErrorMessageTV.setVisibility(View.INVISIBLE);
-//                mForecastListRV.setVisibility(View.VISIBLE);
                 ArrayList<OpenTriviaUtils.TriviaItem> searchResultsList = OpenTriviaUtils.parseTriviaJSON(s);
                 Log.d("GameSetupActivity", "Search Results list = " + searchResultsList);
-//                mForecastAdapter.updateForecastData(searchResultsList);
+
+                if(searchResultsList.size() == 0) {
+                    generateToast(getResources().getString(R.string.msg_NoResults));
+                }
+                else {
+                    generateToast(searchResultsList.size() + " / " + mSpnQuestionCount.getSelectedItem() + " questions found. Press 'Start Game!' to begin.");
+                    mBtnBegin.setText(getResources().getString(R.string.gameSetup_Begin_Text));
+                    mTriviaItems = searchResultsList;
+
+                    // Start game activity
+                    mBtnBegin.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            generateToast("__LOAD_GAME_ACTIVITY__");
+//                            Intent intent = new Intent(v.getContext(), GameSetupActivity.class);
+//                            intent.putExtra(TRIVIA_ITEM_KEY, mTriviaItems);
+//                            startActivity(intent);
+                        }
+                    });
+                }
             } else {
-//                mForecastListRV.setVisibility(View.INVISIBLE);
-//                mLoadingErrorMessageTV.setVisibility(View.VISIBLE);
+                generateToast(getResources().getString(R.string.gameSetup_LoadError));
             }
         }
     }
+
+
+    /**
+     * Generates and displays a toast.
+     * Ref: https://developer.android.com/guide/topics/ui/notifiers/toasts.html
+     *
+     * @author  Makiah Merritt <merrittm@oregonstate.edu>
+     * @param   toastContext    context for the toast
+     * @param   toastMessage    text for the toast
+     * @param   toastDuration   toast's duration
+     * @return  none
+     */
+    public void generateToast(Context toastContext, String toastMessage, int toastDuration)
+    {
+        Context context = (toastContext == null ? getApplicationContext() : toastContext);
+        String message = (toastMessage == null ? "ERROR: No toast message provided" : toastMessage);
+        int duration = (toastDuration == 0 ? Toast.LENGTH_LONG : toastDuration);
+        Toast toast = Toast.makeText(context, message, duration);
+        toast.show();
+    } /*-- /generateToast() declaration --*/
+
+    /**
+     * Overloads generateToast, to only receive the message. Default duration
+     * is Toast.LENGTH_LONG and default context is the applications.
+     *
+     * @author  Makiah Merritt <merrittm@oregonstate.edu>
+     * @param   toastMessage
+     * @return  none
+     */
+    public void generateToast(String toastMessage)
+    {
+        String message = (toastMessage == null ? "ERROR: No toast message provided" : toastMessage);
+        Toast toast = Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG);
+        toast.show();
+    } /*-- /generateToast() declaration --*/
 }
