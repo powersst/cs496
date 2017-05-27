@@ -25,6 +25,10 @@ import java.util.ArrayList;
 
 public class GameSetupActivity extends AppCompatActivity {
     // MEMBERS
+    private static final String KEY_GAME_OPTIONS = "selectedValues";    // Options from the activity's controls
+    private static final String KEY_TRIVIA_ITEMS = "triviaItems";       // Trivia items returned
+    private static final String TAG_SELF = GameSetupActivity.class.getSimpleName();
+    private static final String TAG_PARENT = MainActivity.class.getSimpleName();
     private Bundle mSavedInstanceState;
     private Spinner mSpnQuestionCount;
     private Spinner mSpnQuestionCategory;
@@ -33,7 +37,6 @@ public class GameSetupActivity extends AppCompatActivity {
     private ProgressBar mPbLoading;
     private Button mBtnBegin;
     private ArrayList<OpenTriviaUtils.TriviaItem> mTriviaItems;
-    private static final String TRIVIA_ITEM_KEY = "triviaItems";
 
     // METHODS
     @Override
@@ -54,6 +57,32 @@ public class GameSetupActivity extends AppCompatActivity {
         mBtnBegin = (Button) findViewById(R.id.btn_GameSetup_Begin);
 
         initializeActivityElements();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        /* Adding to the list breaks. However, this turned out not to be a problem because Android saves element selections itself; so we don't have to programmatically.
+
+        // Capture selections
+        ArrayList<Integer> selectedOptions = null;
+        Log.d("GameSetupActivity", "Selected Options: "
+                + mSpnQuestionCount.getSelectedItemPosition() + " "
+                + mSpnQuestionCategory.getSelectedItemPosition() + " "
+                + mSpnQuestionDifficulty.getSelectedItemPosition() + " "
+                + mSpnQuestionType.getSelectedItemPosition()
+        );
+        selectedOptions.add(mSpnQuestionCount.getSelectedItemPosition());
+        selectedOptions.add(mSpnQuestionCategory.getSelectedItemPosition());
+        selectedOptions.add(mSpnQuestionDifficulty.getSelectedItemPosition());
+        selectedOptions.add(mSpnQuestionType.getSelectedItemPosition());
+        outState.putIntegerArrayList(KEY_GAME_OPTIONS, selectedOptions);
+        */
+
+        // Capture trivia items
+        if(mTriviaItems != null) {
+            outState.putSerializable(KEY_TRIVIA_ITEMS, mTriviaItems);
+        }
+        super.onSaveInstanceState(outState);
     }
 
     /**
@@ -89,16 +118,35 @@ public class GameSetupActivity extends AppCompatActivity {
         mSpnQuestionType.setAdapter(adapter);
 
         //==== Load players previous selections ====
-        // tba
+        if(mSavedInstanceState != null && mSavedInstanceState.containsKey(KEY_TRIVIA_ITEMS))
+        {
+            mTriviaItems = (ArrayList<OpenTriviaUtils.TriviaItem>)mSavedInstanceState.getSerializable(KEY_TRIVIA_ITEMS);
 
-        //==== Enable start button ====
-        mBtnBegin.setVisibility(View.VISIBLE);
-        mBtnBegin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doOpenTriviaSearch();
-            }
-        });
+            // Player can start the game
+            mBtnBegin.setVisibility(View.VISIBLE);
+            mBtnBegin.setText(getResources().getString(R.string.gameSetup_Begin_Text));
+            mBtnBegin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    generateToast("__LOAD_GAME_ACTIVITY__");
+//                    Intent intent = new Intent(v.getContext(), GameSetupActivity.class);
+//                    intent.putExtra(TRIVIA_ITEM_KEY, mTriviaItems);
+//                    startActivity(intent);
+                }
+            });
+        }
+        else
+        {
+            //==== Enable start button ====
+            mBtnBegin.setVisibility(View.VISIBLE);
+            mBtnBegin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    doOpenTriviaSearch();
+                }
+            });
+        }
+        mPbLoading.setVisibility(View.INVISIBLE);
     }
 
 
