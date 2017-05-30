@@ -57,7 +57,7 @@
     </string-array>
 
     <string-array name="gameSetup_QuestionCategory_Entries">
-        <item value="">Any Category</item>
+        <item>Any Category</item>
         <item>General Knowledge</item>
         <item>Entertainment: Books</item>
         <item>Entertainment: Film</item>
@@ -113,23 +113,27 @@
     </string-array>
 
     <string-array name="gameSetup_QuestionDifficulty_Entries">
+        <item>Any Difficulty</item>
         <item>Easy</item>
         <item>Medium</item>
         <item>Hard</item>
     </string-array>
 
     <string-array name="gameSetup_QuestionDifficulty_EntryValues">
+        <item></item>
         <item>easy</item>
         <item>medium</item>
         <item>hard</item>
     </string-array>
 
     <string-array name="gameSetup_QuestionType_Entries">
+        <item>Any Type</item>
         <item>Multiple Choice</item>
         <item>True / False</item>
     </string-array>
 
     <string-array name="gameSetup_QuestionType_EntryValues">
+        <item></item>
         <item>multiple</item>
         <item>boolean</item>
     </string-array>
