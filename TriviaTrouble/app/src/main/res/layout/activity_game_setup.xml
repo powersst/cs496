@@ -87,11 +87,20 @@
             android:textSize="28sp" />
 
         <Button
-            android:id="@+id/btn_GameSetup_Begin"
+            android:id="@+id/btn_GameSetup_Search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:text="@string/gameSetup_Search_Text"
+            android:textSize="28sp"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/btn_GameSetup_Begin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/gameSetup_Begin_Text"
             android:textSize="28sp"
             android:visibility="invisible" />
 

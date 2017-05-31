@@ -19,7 +19,7 @@ import com.powersst.triviatrouble.utils.OpenTriviaUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/**
+ /*
  * Created by Makiah Merritt on 5/25/2017.
  */
 
@@ -35,6 +35,7 @@ public class GameSetupActivity extends AppCompatActivity {
     private Spinner mSpnQuestionDifficulty;
     private Spinner mSpnQuestionType;
     private ProgressBar mPbLoading;
+    private Button mBtnSearch;
     private Button mBtnBegin;
     private ArrayList<OpenTriviaUtils.TriviaItem> mTriviaItems;
 
@@ -54,7 +55,27 @@ public class GameSetupActivity extends AppCompatActivity {
         mSpnQuestionDifficulty = (Spinner)findViewById(R.id.spn_GameSetup_QuestionDifficulty);
         mSpnQuestionType = (Spinner)findViewById(R.id.spn_GameSetup_QuestionType);
         mPbLoading = (ProgressBar) findViewById(R.id.pb_GameSetup_Loading);
+        mBtnSearch = (Button) findViewById(R.id.btn_GameSetup_Search);
         mBtnBegin = (Button) findViewById(R.id.btn_GameSetup_Begin);
+
+        // Setup Button Actions
+        mBtnSearch.setVisibility(View.VISIBLE);
+        mBtnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doOpenTriviaSearch();
+            }
+        });
+
+        mBtnBegin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                generateToast("__LOAD_GAME_ACTIVITY__");
+               /* Intent intent = new Intent(v.getContext(), InGameActivity.class);
+                intent.putExtra(TRIVIA_ITEM_KEY, mTriviaItems);
+                startActivity(intent);*/
+            }
+        });
 
         initializeActivityElements();
     }
@@ -77,6 +98,7 @@ public class GameSetupActivity extends AppCompatActivity {
         selectedOptions.add(mSpnQuestionType.getSelectedItemPosition());
         outState.putIntegerArrayList(KEY_GAME_OPTIONS, selectedOptions);
         */
+
 
         // Capture trivia items
         if(mTriviaItems != null) {
@@ -124,27 +146,6 @@ public class GameSetupActivity extends AppCompatActivity {
 
             // Player can start the game
             mBtnBegin.setVisibility(View.VISIBLE);
-            mBtnBegin.setText(getResources().getString(R.string.gameSetup_Begin_Text));
-            mBtnBegin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    generateToast("__LOAD_GAME_ACTIVITY__");
-//                    Intent intent = new Intent(v.getContext(), GameSetupActivity.class);
-//                    intent.putExtra(TRIVIA_ITEM_KEY, mTriviaItems);
-//                    startActivity(intent);
-                }
-            });
-        }
-        else
-        {
-            //==== Enable start button ====
-            mBtnBegin.setVisibility(View.VISIBLE);
-            mBtnBegin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    doOpenTriviaSearch();
-                }
-            });
         }
         mPbLoading.setVisibility(View.INVISIBLE);
     }
@@ -176,10 +177,11 @@ public class GameSetupActivity extends AppCompatActivity {
         qType = String.valueOf(entryValue);
 
 
+        Log.d("GameSetupActivity", "Clearing saved items (if any).");
+        mTriviaItems = null;
         Log.d("GameSetupActivity", "URL Params: " + qAmount + ", " + qCategory + ", " + qDifficulty + ", " + qType);
-
         String openTriviaSearchUrl = OpenTriviaUtils.buildTriviaURL(qAmount, qCategory, qDifficulty, qType);
-        Log.d("GameSetupActivity", "got search url: " + openTriviaSearchUrl);
+        Log.d("GameSetupActivity", "Got search url: " + openTriviaSearchUrl);
         new OpenTriviaSearchTask().execute(openTriviaSearchUrl);
     }
 
@@ -189,7 +191,9 @@ public class GameSetupActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             mPbLoading.setVisibility(View.VISIBLE);
+            mBtnSearch.setEnabled(false);
             mBtnBegin.setEnabled(false);
+            mBtnBegin.setVisibility(View.INVISIBLE);
         }
 
         @Override
@@ -208,7 +212,7 @@ public class GameSetupActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             mPbLoading.setVisibility(View.INVISIBLE);
-            mBtnBegin.setEnabled(true);
+            mBtnSearch.setEnabled(true);
 
             if (s != null) {
                 ArrayList<OpenTriviaUtils.TriviaItem> searchResultsList = OpenTriviaUtils.parseTriviaJSON(s);
@@ -222,16 +226,9 @@ public class GameSetupActivity extends AppCompatActivity {
                     mBtnBegin.setText(getResources().getString(R.string.gameSetup_Begin_Text));
                     mTriviaItems = searchResultsList;
 
-                    // Start game activity
-                    mBtnBegin.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            generateToast("__LOAD_GAME_ACTIVITY__");
-//                            Intent intent = new Intent(v.getContext(), GameSetupActivity.class);
-//                            intent.putExtra(TRIVIA_ITEM_KEY, mTriviaItems);
-//                            startActivity(intent);
-                        }
-                    });
+                    // Enable starting of game activity
+                    mBtnBegin.setEnabled(true);
+                    mBtnBegin.setVisibility(View.VISIBLE);
                 }
             } else {
                 generateToast(getResources().getString(R.string.gameSetup_LoadError));
