@@ -129,9 +129,9 @@ public class GameSetupActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     generateToast("__LOAD_GAME_ACTIVITY__");
-//                    Intent intent = new Intent(v.getContext(), GameSetupActivity.class);
-//                    intent.putExtra(TRIVIA_ITEM_KEY, mTriviaItems);
-//                    startActivity(intent);
+                    Intent intent = new Intent(v.getContext(), InGameActivity.class);
+                    intent.putExtra(KEY_TRIVIA_ITEMS, mTriviaItems);
+                    startActivity(intent);
                 }
             });
         }
@@ -227,9 +227,9 @@ public class GameSetupActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             generateToast("__LOAD_GAME_ACTIVITY__");
-//                            Intent intent = new Intent(v.getContext(), GameSetupActivity.class);
-//                            intent.putExtra(TRIVIA_ITEM_KEY, mTriviaItems);
-//                            startActivity(intent);
+                            Intent intent = new Intent(v.getContext(), InGameActivity.class);
+                            intent.putExtra(KEY_TRIVIA_ITEMS, mTriviaItems);
+                            startActivity(intent);
                         }
                     });
                 }
