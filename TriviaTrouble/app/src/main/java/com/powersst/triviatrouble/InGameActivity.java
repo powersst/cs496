@@ -21,6 +21,9 @@ public class InGameActivity extends AppCompatActivity {
     private Button mBtnSubmitDec;
 
     //need onCreate
+    //--pull content from intent
+    //--create recycler items for each question
+    //---randomize correct and incorrect answers
     //set questions and answers
     //create onClickListener
     //show correct answers
