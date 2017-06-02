@@ -1,3 +1,8 @@
-<item Value="easy">Easy</item>
-<item Value="medium">Medium</item>
-<item Value="hard">Hard</item>
+
+<item>Easy</item>
+<item>Medium</item>
+<item>Hard</item>
+
+<item>easy</item>
+<item>medium</item>
+<item>hard</item>

@@ -1,10 +1,13 @@
 package com.powersst.triviatrouble;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.powersst.triviatrouble.utils.NetworkUtils;
 import com.powersst.triviatrouble.utils.OpenTriviaUtils;
@@ -12,20 +15,67 @@ import com.powersst.triviatrouble.utils.OpenTriviaUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+{
+    // MEMBERS
+    private Bundle mSavedInstanceState;
+    private Button mBtnBegin;
+    private FloatingActionButton mFabLeaderboard;
+    private FloatingActionButton mFabSettings;
 
+    // METHODS
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Log.d("MainActivity", "ON CREATE METHOD");
 
+        // Capture references
+        mSavedInstanceState = savedInstanceState;
+        mBtnBegin = (Button) findViewById(R.id.btn_Main_Begin);
+        mFabSettings = (FloatingActionButton) findViewById(R.id.fab_Main_Settings);
+        mFabLeaderboard = (FloatingActionButton) findViewById(R.id.fab_Main_Leaderboard);
+
+        // Assign actions
+        mBtnBegin.setOnClickListener(new Button.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(v.getContext(), GameSetupActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mFabSettings.setOnClickListener(new FloatingActionButton.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+//                Intent intent = new Intent(v.getContext(), GameSetupActivity.class);
+//                startActivity(intent);
+            }
+        });
+
+        mFabLeaderboard.setOnClickListener(new FloatingActionButton.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+//                Intent intent = new Intent(v.getContext(), GameSetupActivity.class);
+//                startActivity(intent);
+            }
+        });
+    }
+}
+/*
         doOpenTriviaSearch();
     }
 
     //Execute Search
-    private void doOpenTriviaSearch() {
+    public void doOpenTriviaSearch() {
         Log.d("MainActivity", "doOpenTriviaSearch");
 
         String qAmount = "10";
@@ -75,3 +125,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+*/
