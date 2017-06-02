@@ -19,9 +19,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".GameSetupActivity"
-                  android:launchMode="singleTop"
-                  android:label="@string/gameSetup_Title"
-                  android:parentActivityName=".MainActivity">
+            android:launchMode="singleTop"
+            android:label="@string/gameSetup_Title"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"
+                />
+        </activity>
+        <activity android:name=".InGameActivity"
+            android:launchMode="singleTop"
+            android:label="@string/inGame_Title"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"

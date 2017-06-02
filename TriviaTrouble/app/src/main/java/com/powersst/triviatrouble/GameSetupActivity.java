@@ -26,7 +26,7 @@ import java.util.ArrayList;
 public class GameSetupActivity extends AppCompatActivity {
     // MEMBERS
     private static final String KEY_GAME_OPTIONS = "selectedValues";    // Options from the activity's controls
-    private static final String KEY_TRIVIA_ITEMS = "triviaItems";       // Trivia items returned
+    public static final String KEY_TRIVIA_ITEMS = "triviaItems";       // Trivia items returned
     private static final String TAG_SELF = GameSetupActivity.class.getSimpleName();
     private static final String TAG_PARENT = MainActivity.class.getSimpleName();
     private Bundle mSavedInstanceState;
@@ -70,9 +70,9 @@ public class GameSetupActivity extends AppCompatActivity {
         mBtnBegin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                generateToast("__LOAD_GAME_ACTIVITY__");
+                //generateToast("__LOAD_GAME_ACTIVITY__");
                 Intent intent = new Intent(v.getContext(), InGameActivity.class);
-                intent.putExtra(TRIVIA_ITEM_KEY, mTriviaItems);
+                intent.putExtra(KEY_TRIVIA_ITEMS, mTriviaItems);
                 startActivity(intent);
             }
         });
