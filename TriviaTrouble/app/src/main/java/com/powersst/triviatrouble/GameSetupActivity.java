@@ -71,9 +71,9 @@ public class GameSetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 generateToast("__LOAD_GAME_ACTIVITY__");
-               /* Intent intent = new Intent(v.getContext(), InGameActivity.class);
+                Intent intent = new Intent(v.getContext(), InGameActivity.class);
                 intent.putExtra(TRIVIA_ITEM_KEY, mTriviaItems);
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
 
