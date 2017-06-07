@@ -1,6 +1,7 @@
 package com.powersst.triviatrouble.utils;
 
 import android.net.Uri;
+import android.util.Base64;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -13,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
 
+import static android.util.Base64.decode;
+
 /**
  * Created by powersst on 5/23/17.
  */
@@ -23,12 +26,15 @@ public class OpenTriviaUtils {
     private final static String OPEN_TRIVIA_CATEGORY_PARAM = "category";
     private final static String OPEN_TRIVIA_DIFFICULTY_PARAM = "difficulty";
     private final static String OPEN_TRIVIA_TYPE_PARAM = "type";
+    private final static String OPEN_TRIVIA_ENCODING_PARAM = "encode";
 
 
     private final static String qAmount = "10";
     private final static String qCategory = "9";
     private final static String qDifficulty = "easy";
     private final static String qType = "multiple";
+    //private final static String qEncode = "url3986";
+    private final static String qEncode = "base64";
 
 /*
  * Layout for typical MC question
@@ -61,11 +67,11 @@ public class OpenTriviaUtils {
         public static final String EXTRA_TRIVIA_ITEM = "com.powersst.triviatrouble.utils.TriviaItem.SearchResult";
         */
 
-        public String category;
-        public String type;
-        public String difficulty;
-        public String question;
-        public String correct_answer;
+        public byte[] category;
+        public byte[] type;
+        public byte[] difficulty;
+        public byte[] question;
+        public byte[] correct_answer;
         public String[] incorrect_answers;
     }
 
@@ -75,6 +81,7 @@ public class OpenTriviaUtils {
                 .appendQueryParameter(OPEN_TRIVIA_CATEGORY_PARAM, qCategory)
                 .appendQueryParameter(OPEN_TRIVIA_DIFFICULTY_PARAM, qDifficulty)
                 .appendQueryParameter(OPEN_TRIVIA_TYPE_PARAM, qType)
+                .appendQueryParameter(OPEN_TRIVIA_ENCODING_PARAM, qEncode)
                 .build()
                 .toString();
     }
@@ -89,17 +96,17 @@ public class OpenTriviaUtils {
                 TriviaItem triviaItem = new TriviaItem();
                 JSONObject triviaListElem = triviaList.getJSONObject(i);
 
-                triviaItem.category = triviaListElem.getString("category");
-                triviaItem.type = triviaListElem.getString("type");
-                triviaItem.difficulty = triviaListElem.getString("difficulty");
-                triviaItem.question = triviaListElem.getString("question");
-                triviaItem.correct_answer = triviaListElem.getString("correct_answer");
+                triviaItem.category = decode(triviaListElem.getString("category"), Base64.DEFAULT);
+                triviaItem.type = decode(triviaListElem.getString("type"), Base64.DEFAULT);
+                triviaItem.difficulty = decode(triviaListElem.getString("difficulty"), Base64.DEFAULT);
+                triviaItem.question = decode(triviaListElem.getString("question"), Base64.DEFAULT);
+                triviaItem.correct_answer = decode(triviaListElem.getString("correct_answer"), Base64.DEFAULT);
 
                 JSONArray triviaIncorrect = triviaListElem.getJSONArray("incorrect_answers");
                 triviaItem.incorrect_answers = new String[triviaIncorrect.length()];
 
                 for (int j = 0; j < triviaIncorrect.length(); j++) {
-                    triviaItem.incorrect_answers[j] = triviaIncorrect.getString(j);
+                    triviaItem.incorrect_answers[j] = new String(decode(triviaIncorrect.getString(j), Base64.DEFAULT));
                 }
 
                 triviaItemsList.add(triviaItem);
