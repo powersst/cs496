@@ -30,6 +30,14 @@
      * ACTIVITY: In Game
      *-->
     <string name="inGame_Title">Game Setup</string>
+    <string name="endGame_Title">Results</string>
     <string name="inGame_SubmitBtn">Submit Answer</string>
+    <string name="inGame_FinishBtn">Finish</string>
     <string name="inGame_NextBtn">Next Question</string>
+    <string name="endGame_StartNewBtn">Start New Game</string>
+    <string name="endGame_ShareBtn">Share</string>
+    <string name="endGame_PlayerScore"></string>
+    <string name="endGame_Slash"> / </string>
+    <string name="endGame_TotalScore"></string>
+
 </resources>
