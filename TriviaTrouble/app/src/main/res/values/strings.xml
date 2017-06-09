@@ -12,14 +12,14 @@
      * ACTIVITY: Game Setup
      *-->
     <string name="gameSetup_Title">Game Setup</string>
-    <string name="gameSetup_QuestionCount_Title">Question Count</string>
-    <string name="gameSetup_QuestionCount_Prompt">Question Count</string>
-    <string name="gameSetup_QuestionCategory_Title">Question Category</string>
-    <string name="gameSetup_QuestionCategory_Prompt">Question Category</string>
-    <string name="gameSetup_QuestionDifficulty_Title">Question Difficulty</string>
-    <string name="gameSetup_QuestionDifficulty_Prompt">Question Difficulty</string>
-    <string name="gameSetup_QuestionType_Title">Question Type</string>
-    <string name="gameSetup_QuestionType_Prompt">Question Type</string>
+    <string name="gameSetup_QuestionCount_Title">Question Count:</string>
+    <string name="gameSetup_QuestionCount_Prompt">Question Count:</string>
+    <string name="gameSetup_QuestionCategory_Title">Question Category:</string>
+    <string name="gameSetup_QuestionCategory_Prompt">Question Category:</string>
+    <string name="gameSetup_QuestionDifficulty_Title">Question Difficulty:</string>
+    <string name="gameSetup_QuestionDifficulty_Prompt">Question Difficulty:</string>
+    <string name="gameSetup_QuestionType_Title">Question Type:</string>
+    <string name="gameSetup_QuestionType_Prompt">Question Type:</string>
     <string name="gameSetup_Search_Text">Load Questions</string>
     <string name="gameSetup_Begin_Text">Start Game!</string>
     <string name="main_Title">Trivia Trouble</string>

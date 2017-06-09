@@ -188,13 +188,15 @@ public class InGameActivity extends AppCompatActivity {
          */
         resetButtons();
         mTitleTV.setText("Question: " + (mCurrentTriviaItem + 1) + " of " + mTriviaItems.size());
-        mQuestionTV.setText(triviaItem.question);
+        String question = new String (triviaItem.question);
+        mQuestionTV.setText(question);
 
         /*
          * Handle Answers
          */
         // Load answers and shuffle
-        answers.add(triviaItem.correct_answer);
+        String correctAnswer = new String(triviaItem.correct_answer);
+        answers.add(correctAnswer);
         for(int i = 0; i < triviaItem.incorrect_answers.length; i++) {
             answers.add(triviaItem.incorrect_answers[i]);
         }
@@ -205,7 +207,7 @@ public class InGameActivity extends AppCompatActivity {
             switch(i)
             {
                 case 0:
-                    if(answers.get(i).equals(triviaItem.correct_answer)) {
+                    if(answers.get(i).equals(correctAnswer)) {
                         mCorrectAnswer = mBtnOptOne.getId();
                     }
 
@@ -213,7 +215,7 @@ public class InGameActivity extends AppCompatActivity {
                     mBtnOptOne.setVisibility(View.VISIBLE);
                     break;
                 case 1:
-                    if(answers.get(i).equals(triviaItem.correct_answer)) {
+                    if(answers.get(i).equals(correctAnswer)) {
                         mCorrectAnswer = mBtnOptTwo.getId();
                     }
 
@@ -221,7 +223,7 @@ public class InGameActivity extends AppCompatActivity {
                     mBtnOptTwo.setVisibility(View.VISIBLE);
                     break;
                 case 2:
-                    if(answers.get(i).equals(triviaItem.correct_answer)) {
+                    if(answers.get(i).equals(correctAnswer)) {
                         mCorrectAnswer = mBtnOptThree.getId();
                     }
 
@@ -229,7 +231,7 @@ public class InGameActivity extends AppCompatActivity {
                     mBtnOptThree.setVisibility(View.VISIBLE);
                     break;
                 case 3:
-                    if(answers.get(i).equals(triviaItem.correct_answer)) {
+                    if(answers.get(i).equals(correctAnswer)) {
                         mCorrectAnswer = mBtnOptFour.getId();
                     }
 
