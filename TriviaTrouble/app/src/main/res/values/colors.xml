@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#1c5b5a</color>
-    <color name="colorPrimaryDark">#47f0a3</color>
+    <color name="colorPrimary">#233D4D</color>
+    <color name="colorPrimaryDark">#77BA99</color>
+    <color name="colorBackground">#EEF4D4</color>
     <color name="colorAccent">#604020</color>
-    <color name="colorAnswerButton_Pressed">#8de4d3</color>
-    <color name="colorAnswerButton_CorrectAnswer">#36a620</color>
-    <color name="colorAnswerButton_IncorrectAnswer">#c92d34</color>
+    <color name="colorText">#233D4D</color>
+    <color name="colorAnswerButton_Pressed">#59C9A5</color>
+    <color name="colorAnswerButton_CorrectAnswer">#7EE081</color>
+    <color name="colorAnswerButton_IncorrectAnswer">#FF3C38</color>
 </resources>
