@@ -96,30 +96,31 @@
                 android:text="@string/inGame_SubmitBtn"/>
 
             <Button
-                android:id="@+id/finishBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="30sp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_marginBottom="16dp"
-                android:gravity="bottom"
-                android:textColor="@color/colorText"
-                android:visibility="invisible"
-                android:text="@string/inGame_FinishBtn"/>
-
-            <Button
                 android:id="@+id/nextBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="-55dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:gravity="bottom"
+                android:textColor="@color/colorText"
+                android:text="@string/inGame_NextBtn"
+                android:textAlignment="center"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/finishBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginRight="8dp"
                 android:gravity="bottom"
-                android:text="@string/inGame_NextBtn"
+                android:text="@string/inGame_FinishBtn"
                 android:textAlignment="center"
-                android:textSize="30sp" />
+                android:textColor="@color/colorText"
+                android:textSize="30sp"
+                android:visibility="invisible" />
 
         </LinearLayout>
     </ScrollView>
