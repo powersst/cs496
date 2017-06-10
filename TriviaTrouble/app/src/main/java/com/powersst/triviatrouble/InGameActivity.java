@@ -30,10 +30,13 @@ public class InGameActivity extends AppCompatActivity {
     private Button mBtnOptFour;
     private Button mBtnSubmit;
     private Button mBtnNext;
+    private Button mBtnFinish;
     private int mSelectedAnswer;
     private int mCorrectAnswer;
     private ArrayList<OpenTriviaUtils.TriviaItem> mTriviaItems;
     private int mCurrentTriviaItem;
+    private static int playerScore;
+    private static int totalScore;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +50,9 @@ public class InGameActivity extends AppCompatActivity {
         mBtnOptThree = (Button) findViewById(R.id.optionThreeBtn);
         mBtnOptFour = (Button) findViewById(R.id.optionFourBtn);
         mBtnSubmit = (Button) findViewById(R.id.submitBtn);
+        mBtnFinish = (Button) findViewById(R.id.finishBtn);
+        playerScore = 0;
+        totalScore = 0;
             mBtnSubmit.setOnClickListener(new Button.OnClickListener(){
                 @Override
                 public void onClick(View v) {
@@ -61,6 +67,13 @@ public class InGameActivity extends AppCompatActivity {
                     loadQuestion(mTriviaItems.get(mCurrentTriviaItem));
                 }
             });
+        mBtnFinish.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), EndGameActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Intent intent = getIntent();
         mTriviaItems = (ArrayList<OpenTriviaUtils.TriviaItem>) intent.getSerializableExtra(GameSetupActivity.KEY_TRIVIA_ITEMS);
@@ -246,12 +259,14 @@ public class InGameActivity extends AppCompatActivity {
 
     private void checkAnswer()
     {
+
         if(mSelectedAnswer != -999) {
             // Display result
             Button correctAnswer = (Button) findViewById(mCorrectAnswer);
             Button selectedAnswer = (Button) findViewById(mSelectedAnswer);
             if (selectedAnswer.equals(correctAnswer)) {
                 correctAnswer.setBackgroundResource(R.color.colorAnswerButton_CorrectAnswer);
+                playerScore = playerScore + 1;
                 generateToast("__CORRECT__");
             } else {
                 correctAnswer.setBackgroundResource(R.color.colorAnswerButton_CorrectAnswer);
@@ -274,9 +289,23 @@ public class InGameActivity extends AppCompatActivity {
             if (++mCurrentTriviaItem < mTriviaItems.size()) {
                 mBtnNext.setVisibility(View.VISIBLE);
                 mBtnSubmit.setVisibility(View.INVISIBLE);
+            } else {
+                mBtnFinish.setVisibility(View.VISIBLE);
+                mBtnFinish.setClickable(true);
             }
         }
     }
+
+    public static int getPlayerScore() {
+        return playerScore;
+    }
+
+    public static int getTotalScore() {
+        //totalScore = mTriviaItems.size();
+        return totalScore;
+    }
+
+
 
 
     /**
