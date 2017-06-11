@@ -52,7 +52,7 @@ public class InGameActivity extends AppCompatActivity {
         mBtnSubmit = (Button) findViewById(R.id.submitBtn);
         mBtnFinish = (Button) findViewById(R.id.finishBtn);
         playerScore = 0;
-        totalScore = 0;
+        totalScore = 1;
             mBtnSubmit.setOnClickListener(new Button.OnClickListener(){
                 @Override
                 public void onClick(View v) {
@@ -65,6 +65,7 @@ public class InGameActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     loadQuestion(mTriviaItems.get(mCurrentTriviaItem));
+                    totalScore = totalScore + 1 ;
                 }
             });
         mBtnFinish.setOnClickListener(new Button.OnClickListener() {
@@ -267,11 +268,11 @@ public class InGameActivity extends AppCompatActivity {
             if (selectedAnswer.equals(correctAnswer)) {
                 correctAnswer.setBackgroundResource(R.color.colorAnswerButton_CorrectAnswer);
                 playerScore = playerScore + 1;
-                generateToast("__CORRECT__");
+                generateToast("Correct: " + playerScore + "/" + totalScore );
             } else {
                 correctAnswer.setBackgroundResource(R.color.colorAnswerButton_CorrectAnswer);
                 selectedAnswer.setBackgroundResource(R.color.colorAnswerButton_IncorrectAnswer);
-                generateToast("__INCORRECT__");
+                generateToast("Incorrect: " + playerScore + "/" + totalScore );
             }
 
 

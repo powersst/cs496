@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
 
 
     <TextView
@@ -11,6 +13,7 @@
         android:textAlignment="center"
         android:layout_marginBottom="16dp"
         android:layout_marginTop="100dp"
+        android:textColor="@color/colorText"
         android:text="Your Score:"
         android:textSize="28sp"/>
 
@@ -27,6 +30,7 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:layout_marginBottom="16dp"
+            android:textColor="@color/colorText"
             android:text="@string/endGame_PlayerScore"
             android:textSize="36sp"/>
 
@@ -35,6 +39,7 @@
             android:layout_width="29dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:textColor="@color/colorText"
             android:text="@string/endGame_Slash"
             android:textAlignment="center"
             android:textSize="36sp" />
@@ -45,6 +50,7 @@
             android:layout_height="wrap_content"
             android:gravity="left"
             android:layout_marginBottom="16dp"
+            android:textColor="@color/colorText"
             android:text="@string/endGame_TotalScore"
             android:textSize="36sp"/>
 
@@ -61,6 +67,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginTop="150dp"
         android:gravity="bottom"
+        android:textColor="@color/colorText"
         android:text="@string/endGame_ShareBtn"/>
 
     <Button
@@ -73,6 +80,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
         android:gravity="bottom"
+        android:textColor="@color/colorText"
         android:text="@string/endGame_StartNewBtn"/>
 
 </LinearLayout>
