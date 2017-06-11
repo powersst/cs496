@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -325,6 +326,7 @@ public class InGameActivity extends AppCompatActivity {
         String message = (toastMessage == null ? "ERROR: No toast message provided" : toastMessage);
         int duration = (toastDuration == 0 ? Toast.LENGTH_LONG : toastDuration);
         Toast toast = Toast.makeText(context, message, duration);
+        toast.setGravity(Gravity.BOTTOM, 0, -24);
         toast.show();
     } /*-- /generateToast() declaration --*/
 
