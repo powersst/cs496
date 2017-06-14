@@ -222,7 +222,7 @@ public class GameSetupActivity extends AppCompatActivity {
                     generateToast(getResources().getString(R.string.msg_NoResults));
                 }
                 else {
-                    generateToast(searchResultsList.size() + " / " + mSpnQuestionCount.getSelectedItem() + " questions found. Press 'Start Game!' to begin.");
+                    generateToast(searchResultsList.size() + " / " + mSpnQuestionCount.getSelectedItem() + " questions found");
                     mBtnBegin.setText(getResources().getString(R.string.gameSetup_Begin_Text));
                     mTriviaItems = searchResultsList;
 
